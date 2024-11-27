@@ -33,13 +33,10 @@ export async function processingData(
       value: Number((driver.ratePerKm * distanceInKm).toFixed(2)),
     }))
     .sort((a, b) => {
-      const valueA = Number(
-        String(a.value).match(regex)?.[1].replace(',', '.') || '0'
-      )
-      const valueB = Number(
-        String(a.value).match(regex)?.[1].replace(',', '.') || '0'
-      )
-      return valueA - valueB
+      if (a.value > b.value) {
+        return 1
+      }
+      return -1
     })
 
   return {
