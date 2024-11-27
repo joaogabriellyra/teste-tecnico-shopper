@@ -17,8 +17,9 @@ export const confirmARideRoute: FastifyPluginAsyncZod = async app => {
         driver: { id: driverId, name },
         value,
       } = request.body
+      console.log(request.body)
       try {
-        const test = await confirmARide({
+        await confirmARide({
           value,
           customerId,
           driverId,
@@ -27,7 +28,7 @@ export const confirmARideRoute: FastifyPluginAsyncZod = async app => {
           distance,
           duration,
         })
-        return reply.status(200).send(test)
+        return reply.status(200).send({ sucess: true })
       } catch (error) {
         return reply.status(400).send({
           error_code: 'INVALID_DATA',

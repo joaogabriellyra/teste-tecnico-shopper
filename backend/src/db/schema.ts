@@ -17,9 +17,7 @@ export const rides = pgTable('rides', {
     .primaryKey()
     .$default(() => createId()),
   customerId: text('customer_id').notNull(),
-  driverId: integer('driver_id')
-    .references(() => drivers.id)
-    .notNull(),
+  driverId: integer('driver_id').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
