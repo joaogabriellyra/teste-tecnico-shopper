@@ -1,12 +1,5 @@
 import { createId } from '@paralleldrive/cuid2'
-import {
-  integer,
-  numeric,
-  pgTable,
-  real,
-  text,
-  timestamp,
-} from 'drizzle-orm/pg-core'
+import { integer, pgTable, real, text, timestamp } from 'drizzle-orm/pg-core'
 
 export const drivers = pgTable('drivers', {
   id: integer('id').primaryKey().notNull(),
@@ -32,7 +25,7 @@ export const rides = pgTable('rides', {
     .defaultNow(),
   origin: text('origin').notNull(),
   destination: text('destination').notNull(),
-  distance: numeric('distance', { precision: 10, scale: 3 }).notNull(),
+  distance: real('distance').notNull(),
   duration: text('duration').notNull(),
-  value: numeric('value', { precision: 10, scale: 2 }).notNull(),
+  value: real('value').notNull(),
 })

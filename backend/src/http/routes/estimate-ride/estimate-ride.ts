@@ -1,6 +1,6 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { estimateARideSchema } from './schema'
-import { estimateARideWithRoutesAPI } from '../../../functions/estimate-ride-routes-api/estimate-ride-routes-api'
+import { estimateARideWithRoutesAPI } from '../../../functions/estimate-ride-routes-api'
 export const estimateARideRoute: FastifyPluginAsyncZod = async app => {
   app.post(
     '/ride/estimate',
@@ -8,7 +8,7 @@ export const estimateARideRoute: FastifyPluginAsyncZod = async app => {
       schema: estimateARideSchema,
     },
     async (request, reply) => {
-      const { customer_id: customerId, destination, origin } = request.body
+      const { customer_id: _customerId, destination, origin } = request.body
       try {
         const response = await estimateARideWithRoutesAPI(origin, destination)
         return reply.status(200).send(response)
