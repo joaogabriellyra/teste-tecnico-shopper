@@ -9,9 +9,9 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=rides
+      - POSTGRES_DB=shopper
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U docker -d rides"]
+      test: ["CMD-SHELL", "pg_isready -U docker -d shopper"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -27,7 +27,7 @@ services:
       db:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://docker:docker@db:5432/rides
+      - DATABASE_URL=postgresql://docker:docker@db:5432/shopper
     command: >
       sh -c "
       npm run build &&
