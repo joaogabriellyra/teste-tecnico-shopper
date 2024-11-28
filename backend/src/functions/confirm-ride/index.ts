@@ -11,17 +11,13 @@ export async function confirmARide({
   driverId,
   value,
 }: Ride) {
-  const rideInserted = await db
-    .insert(rides)
-    .values({
-      customerId,
-      origin,
-      destination,
-      distance,
-      duration,
-      driverId,
-      value,
-    })
-    .returning()
-  return rideInserted
+  await db.insert(rides).values({
+    customerId,
+    origin,
+    destination,
+    distance,
+    duration,
+    driverId,
+    value,
+  })
 }
