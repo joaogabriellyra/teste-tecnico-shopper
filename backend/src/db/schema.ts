@@ -1,4 +1,4 @@
-import { createId } from '@paralleldrive/cuid2'
+import { sql } from 'drizzle-orm'
 import { integer, pgTable, real, text, timestamp } from 'drizzle-orm/pg-core'
 
 export const drivers = pgTable('drivers', {
@@ -13,9 +13,7 @@ export const drivers = pgTable('drivers', {
 })
 
 export const rides = pgTable('rides', {
-  id: text('id')
-    .primaryKey()
-    .$default(() => createId()),
+  id: integer('id').primaryKey().default(sql`floor(random() * 1000000)`),
   customerId: text('customer_id').notNull(),
   driverId: integer('driver_id').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true })

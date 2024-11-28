@@ -1,5 +1,5 @@
 {
-  "id": "33885a71-ab20-4345-a39a-40b3f4def328",
+  "id": "2cb5bde6-dbe0-4d31-accb-1ccb4eb77578",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -71,9 +71,10 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
-          "notNull": true
+          "notNull": true,
+          "default": "floor(random() * 1000000)"
         },
         "customer_id": {
           "name": "customer_id",
@@ -108,7 +109,7 @@
         },
         "distance": {
           "name": "distance",
-          "type": "numeric(10, 3)",
+          "type": "real",
           "primaryKey": false,
           "notNull": true
         },
@@ -120,27 +121,13 @@
         },
         "value": {
           "name": "value",
-          "type": "numeric(10, 2)",
+          "type": "real",
           "primaryKey": false,
           "notNull": true
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "rides_driver_id_drivers_id_fk": {
-          "name": "rides_driver_id_drivers_id_fk",
-          "tableFrom": "rides",
-          "tableTo": "drivers",
-          "columnsFrom": [
-            "driver_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},

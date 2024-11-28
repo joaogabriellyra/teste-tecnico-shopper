@@ -14,10 +14,9 @@ export const confirmARideRoute: FastifyPluginAsyncZod = async app => {
         origin,
         distance,
         duration,
-        driver: { id: driverId, name },
+        driver: { id: driverId },
         value,
       } = request.body
-      console.log(request.body)
       try {
         await confirmARide({
           value,

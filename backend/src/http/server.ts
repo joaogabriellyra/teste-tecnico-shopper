@@ -7,6 +7,7 @@ import {
 import { env } from '../../env'
 import { estimateARideRoute } from './routes/estimate-ride/estimate-ride'
 import { confirmARideRoute } from './routes/confirm-ride/confirm-ride'
+import { getRideRoute } from './routes/get-ride/get-ride'
 
 const server = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -15,7 +16,18 @@ server.setSerializerCompiler(serializerCompiler)
 
 server.setErrorHandler((error, _request, reply) => {
   const { validation } = error
-
+  if (validation && validation[0].message === 'Motorista invalido') {
+    return reply.status(400).send({
+      error_code: 'INVALID_DRIVER',
+      error_description: 'Motorista invalido',
+    })
+  }
+  if (validation && validation[0].message === 'Nenhum registro encontrado') {
+    return reply.status(404).send({
+      error_code: 'NO_RIDES_FOUND',
+      error_description: 'Nenhum registro encontrado',
+    })
+  }
   if (validation && validation[0].message === 'DRIVER_NOT_FOUND') {
     return reply.status(404).send({
       error_code: 'DRIVER_NOT_FOUND',
@@ -40,6 +52,7 @@ server.setErrorHandler((error, _request, reply) => {
 
 server.register(estimateARideRoute)
 server.register(confirmARideRoute)
+server.register(getRideRoute)
 
 server.listen({ port: env.PORT || 8080, host: '0.0.0.0' }, () => {
   console.log(`server listening on port ${env.PORT || 8080}`)
