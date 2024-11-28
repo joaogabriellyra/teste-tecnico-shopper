@@ -54,6 +54,9 @@ server.register(estimateARideRoute)
 server.register(confirmARideRoute)
 server.register(getRideRoute)
 
+server.get('/health', (req, reply) => {
+  reply.status(200).send('OK');
+});
 server.listen({ port: env.PORT || 8080, host: '0.0.0.0' }, () => {
   console.log(`server listening on port ${env.PORT || 8080}`)
 })
