@@ -8,6 +8,7 @@ import { env } from '../../env'
 import { estimateARideRoute } from './routes/estimate-ride/estimate-ride'
 import { confirmARideRoute } from './routes/confirm-ride/confirm-ride'
 import { getRideRoute } from './routes/get-ride/get-ride'
+import fastifyCors from '@fastify/cors'
 
 const server = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -50,13 +51,17 @@ server.setErrorHandler((error, _request, reply) => {
   }
 })
 
+server.register(fastifyCors, {
+  origin: '*',
+})
+
 server.register(estimateARideRoute)
 server.register(confirmARideRoute)
 server.register(getRideRoute)
 
 server.get('/health', (req, reply) => {
-  reply.status(200).send('OK');
-});
+  reply.status(200).send('OK')
+})
 server.listen({ port: env.PORT || 8080, host: '0.0.0.0' }, () => {
   console.log(`server listening on port ${env.PORT || 8080}`)
 })
