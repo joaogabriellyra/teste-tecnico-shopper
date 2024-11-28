@@ -30,6 +30,7 @@ export function Form() {
       destination
     )
     reset()
+    console.log(responseEstimateARide)
     queryClient.setQueryData(['estimateARide'], responseEstimateARide)
   }
 
