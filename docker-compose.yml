@@ -28,7 +28,7 @@ services:
         condition: service_healthy
     environment:
       - DATABASE_URL=postgresql://docker:docker@db:5432/shopper
-      - GOOGLE_API_KEY=AIzaSyBNqFYLwQ6UN3rqWvaYP47urJvSOde_0UE
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
       - PORT=8080
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
@@ -53,4 +53,4 @@ services:
         condition: service_healthy
     environment:
       - VITE_API_URL=http://backend:8080
-      - GOOGLE_API_KEY=AIzaSyBNqFYLwQ6UN3rqWvaYP47urJvSOde_0UE
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
