@@ -49,10 +49,10 @@ export function Driver({
         value,
       }
       const sucess = await patchConfirmRide(request)
-      if (sucess) {
+
+      if (sucess.sucess === true) {
         navigate('/history')
       }
-      console.error('ERROR')
     }
   }
 
