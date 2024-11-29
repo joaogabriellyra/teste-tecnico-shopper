@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import type { EstimateRideType } from '../http/types/post-estimate-ride'
+import type { EstimateRideType } from '../http/post-estimate-ride/estimate-ride-type'
 
 export function StaticMap() {
   const { data: estimateData } = useQuery<EstimateRideType>({

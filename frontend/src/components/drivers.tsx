@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import type { EstimateRideType } from '../http/types/post-estimate-ride'
+import type { EstimateRideType } from '../http/post-estimate-ride/estimate-ride-type'
 import { Driver } from './driver'
 
 export function Drivers() {
@@ -13,6 +13,7 @@ export function Drivers() {
       {estimateData?.options.map(driver => (
         <Driver
           key={String(driver.id)}
+          id={driver.id}
           name={driver.name}
           description={driver.description}
           vehicle={driver.vehicle}
