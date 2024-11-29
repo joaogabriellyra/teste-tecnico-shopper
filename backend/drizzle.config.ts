@@ -7,6 +7,6 @@ export default defineConfig({
   dbCredentials: {
     url:
       process.env.DATABASE_URL ||
-      'postgresql://docker:docker@localhost:5432/rides',
+      'postgresql://docker:docker@localhost:5432/shopper',
   },
 })
