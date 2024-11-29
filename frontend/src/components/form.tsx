@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { postEstimateARide } from '../http/post-estimate-ride'
+import { postEstimateARide } from '../http/post-estimate-ride/post-estimate-ride'
 import { useQueryClient } from '@tanstack/react-query'
 
 const estimateARideForm = z.object({
@@ -29,9 +29,13 @@ export function Form() {
       origin,
       destination
     )
+    queryClient.setQueryData(['estimateARide'], {
+      ...responseEstimateARide,
+      customerId,
+      addressOrigin: origin,
+      addressDestination: destination,
+    })
     reset()
-    console.log(responseEstimateARide)
-    queryClient.setQueryData(['estimateARide'], responseEstimateARide)
   }
 
   return (

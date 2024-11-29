@@ -1,4 +1,4 @@
-import type { EstimateRideType } from './types/post-estimate-ride'
+import type { EstimateRideType } from './estimate-ride-type'
 
 export async function postEstimateARide(
   customerId: string,
